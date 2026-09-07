@@ -1,0 +1,17 @@
+:root {
+    --blue: #3483fa;
+    --blue-dark: #2968c8;
+    --green: #00a650;
+    --ink: #333333;
+    --muted: #666666;
+    --line: #e5e5e5;
+    --surface: #ffffff;
+    --canvas: #ededed;
+}
+
+body { min-height: 100vh; }
+main {
+    width: min(1200px, calc(100% - 40px));
+    margin: 0 auto;
+    padding: 34px 0 72px;
+}

@@ -1,0 +1,466 @@
+
+/* ========================================
+   CONTAINER
+======================================== */
+
+.catalog-container {
+    width: 100%;
+    max-width: 1400px;
+
+    margin: 0 auto;
+
+    padding: 40px 30px 70px;
+
+    box-sizing: border-box;
+}
+
+
+/* ========================================
+   HERO
+======================================== */
+
+.catalog-hero {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 30px;
+
+    margin-bottom: 45px;
+    padding: 45px;
+
+    border-radius: 24px;
+
+    background: linear-gradient(
+        135deg,
+        #111827,
+        #1f2937
+    );
+
+    color: white;
+
+    box-shadow:
+        0 15px 40px rgba(0, 0, 0, 0.12);
+}
+
+.catalog-hero-content {
+    max-width: 700px;
+}
+
+.eyebrow {
+    display: block;
+
+    margin-bottom: 10px;
+
+    color: #60a5fa;
+
+    font-size: 13px;
+    font-weight: 700;
+
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+}
+
+.catalog-hero h1 {
+    margin: 0 0 12px;
+
+    font-size: clamp(30px, 4vw, 46px);
+
+    line-height: 1.1;
+}
+
+.catalog-hero p {
+    margin: 0;
+
+    color: #d1d5db;
+
+    font-size: 16px;
+    line-height: 1.6;
+}
+
+
+/* ========================================
+   BOTÃO ADICIONAR
+======================================== */
+
+.primary-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 14px 22px;
+
+    border-radius: 12px;
+
+    background: white;
+    color: #111827;
+
+    text-decoration: none;
+
+    font-weight: 700;
+    font-size: 14px;
+
+    transition: 0.2s ease;
+}
+
+.primary-button:hover {
+    transform: translateY(-2px);
+
+    background: #f3f4f6;
+
+    box-shadow:
+        0 8px 20px rgba(0, 0, 0, 0.2);
+}
+
+
+/* ========================================
+   GRID
+======================================== */
+
+.product-grid {
+    display: grid;
+
+    grid-template-columns:
+        repeat(auto-fill, minmax(280px, 1fr));
+
+    gap: 28px;
+}
+
+
+/* ========================================
+   CARD
+======================================== */
+
+.produto-card {
+    display: flex;
+    flex-direction: column;
+
+    overflow: hidden;
+
+    background: #ffffff;
+
+    border: 1px solid #e5e7eb;
+
+    border-radius: 18px;
+
+    box-shadow:
+        0 5px 15px rgba(0, 0, 0, 0.05);
+
+    transition:
+        transform 0.25s ease,
+        box-shadow 0.25s ease;
+}
+
+.produto-card:hover {
+    transform: translateY(-6px);
+
+    box-shadow:
+        0 18px 40px rgba(0, 0, 0, 0.10);
+}
+
+
+/* ========================================
+   CAIXA DA IMAGEM
+======================================== */
+
+.produto-image-box {
+    width: 100%;
+
+    height: 250px;
+
+    padding: 18px;
+
+    box-sizing: border-box;
+
+    background: #f8fafc;
+}
+
+
+/* ========================================
+   ÁREA INTERNA DA IMAGEM
+======================================== */
+
+.produto-image {
+    width: 100%;
+    height: 100%;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    overflow: hidden;
+
+    border-radius: 14px;
+
+    background: white;
+
+    border: 1px solid #e5e7eb;
+}
+
+
+/* ========================================
+   IMAGEM
+======================================== */
+
+.produto-image img {
+    width: 85%;
+    height: 85%;
+
+    object-fit: contain;
+
+    transition: transform 0.3s ease;
+}
+
+.produto-card:hover
+.produto-image img {
+    transform: scale(1.06);
+}
+
+
+/* ========================================
+   CONTEÚDO
+======================================== */
+
+.produto-content {
+    display: flex;
+    flex-direction: column;
+
+    flex: 1;
+
+    padding: 22px;
+}
+
+
+/* ========================================
+   CATEGORIA
+======================================== */
+
+.produto-category {
+    align-self: flex-start;
+
+    margin-bottom: 10px;
+
+    padding: 5px 10px;
+
+    border-radius: 20px;
+
+    background: #eff6ff;
+
+    color: #2563eb;
+
+    font-size: 11px;
+    font-weight: 700;
+
+    text-transform: uppercase;
+}
+
+
+/* ========================================
+   NOME
+======================================== */
+
+.produto-name {
+    margin: 0 0 10px;
+
+    color: #111827;
+
+    font-size: 21px;
+
+    line-height: 1.3;
+}
+
+
+/* ========================================
+   DESCRIÇÃO
+======================================== */
+
+.produto-description {
+    display: -webkit-box;
+
+    margin: 0 0 20px;
+
+    color: #6b7280;
+
+    font-size: 14px;
+
+    line-height: 1.6;
+
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+
+    overflow: hidden;
+}
+
+
+/* ========================================
+   INFORMAÇÕES
+======================================== */
+
+.produto-info {
+    display: grid;
+
+    grid-template-columns: 1fr 1fr;
+
+    gap: 10px;
+
+    margin-top: auto;
+    margin-bottom: 18px;
+
+    padding-top: 15px;
+
+    border-top: 1px solid #f1f5f9;
+}
+
+.produto-info-item {
+    display: flex;
+    flex-direction: column;
+
+    gap: 4px;
+}
+
+.info-label {
+    color: #9ca3af;
+
+    font-size: 11px;
+
+    text-transform: uppercase;
+
+    font-weight: 600;
+}
+
+.produto-info strong {
+    color: #374151;
+
+    font-size: 14px;
+}
+
+
+/* ========================================
+   BOTÃO VER PRODUTO
+======================================== */
+
+.produto-link {
+    display: flex;
+
+    align-items: center;
+    justify-content: space-between;
+
+    width: 100%;
+
+    padding: 13px 16px;
+
+    box-sizing: border-box;
+
+    border-radius: 10px;
+
+    background: #111827;
+
+    color: white;
+
+    text-decoration: none;
+
+    font-size: 14px;
+    font-weight: 700;
+
+    transition: 0.2s ease;
+}
+
+.produto-link span {
+    font-size: 18px;
+
+    transition: transform 0.2s ease;
+}
+
+.produto-link:hover {
+    background: #2563eb;
+}
+
+.produto-link:hover span {
+    transform: translateX(4px);
+}
+
+
+/* ========================================
+   ESTADO VAZIO
+======================================== */
+
+.empty-state {
+    padding: 60px 30px;
+
+    text-align: center;
+
+    border: 1px dashed #d1d5db;
+
+    border-radius: 18px;
+
+    background: #f9fafb;
+}
+
+.empty-icon {
+    margin-bottom: 15px;
+
+    font-size: 45px;
+}
+
+.empty-state h2 {
+    margin: 0 0 8px;
+
+    color: #374151;
+
+    font-size: 22px;
+}
+
+.empty-state p {
+    margin: 0;
+
+    color: #6b7280;
+}
+
+
+/* ========================================
+   RESPONSIVIDADE
+======================================== */
+
+@media (max-width: 800px) {
+
+    .catalog-container {
+        padding: 25px 16px 50px;
+    }
+
+    .catalog-hero {
+        flex-direction: column;
+
+        align-items: flex-start;
+
+        padding: 30px;
+    }
+
+    .catalog-hero-action {
+        width: 100%;
+    }
+
+    .primary-button {
+        width: 100%;
+    }
+}
+
+
+@media (max-width: 500px) {
+
+    .catalog-hero {
+        padding: 25px 20px;
+    }
+
+    .catalog-hero h1 {
+        font-size: 30px;
+    }
+
+    .product-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .produto-image-box {
+        height: 230px;
+    }
+}
