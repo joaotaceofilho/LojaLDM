@@ -1,1 +1,1 @@
-//
+import './catalog-carousel.js';

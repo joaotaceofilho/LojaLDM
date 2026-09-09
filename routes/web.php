@@ -30,9 +30,11 @@ Route::get('/contato', function () {
    return view('contact');
 });
 
-Route::get('/product/{id?}', function ($id = null) {
-    return view('product', ['id' => $id]);
-});
+#Route::get('/product/{id?}', function ($id = null) {
+   # return view('product', ['id' => $id]);
+#});
+
+#route::get('/product/{id}', [LDMcontroller::class, 'show'])->name('product.show');
 
 
 Route::get('/search', function () {

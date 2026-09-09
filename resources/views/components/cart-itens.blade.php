@@ -1,3 +1,4 @@
+@if($dados->isEmpty())
 <section class="empty-state">
 
             <div class="empty-icon">
@@ -115,3 +116,5 @@
             @endforeach
 
         </section>
+
+    @endif

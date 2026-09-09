@@ -1,0 +1,272 @@
+.catalog-carousel {
+    position: relative;
+    width: 100%;
+    max-width: 1400px;
+    height: 420px;
+    margin: 30px auto;
+    overflow: hidden;
+    border-radius: 24px;
+    background: #f5f5f5;
+}
+
+.carousel-track {
+    width: 100%;
+    height: 100%;
+    position: relative;
+}
+
+.carousel-slide {
+    position: absolute;
+    inset: 0;
+
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+
+    align-items: center;
+
+    padding: 50px 70px;
+
+    opacity: 0;
+    visibility: hidden;
+
+    transition:
+        opacity .5s ease,
+        visibility .5s ease;
+}
+
+.carousel-slide.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+
+/* CONTEÚDO */
+
+.carousel-content {
+    max-width: 520px;
+    z-index: 2;
+}
+
+.carousel-content .eyebrow {
+    display: inline-block;
+
+    margin-bottom: 15px;
+
+    font-size: 14px;
+    font-weight: 700;
+
+    text-transform: uppercase;
+    letter-spacing: 1px;
+
+    color: #16803c;
+}
+
+.carousel-content h1 {
+    margin: 0 0 18px;
+
+    font-size: clamp(32px, 4vw, 52px);
+    line-height: 1.05;
+
+    color: #171717;
+}
+
+.carousel-content p {
+    margin: 0 0 28px;
+
+    max-width: 470px;
+
+    font-size: 17px;
+    line-height: 1.6;
+
+    color: #5f6368;
+}
+
+
+/* BOTÃO */
+
+.carousel-content .primary-button {
+    display: inline-flex;
+
+    align-items: center;
+    justify-content: center;
+
+    min-height: 46px;
+
+    padding: 0 25px;
+
+    border-radius: 10px;
+
+    background: #16803c;
+    color: white;
+
+    text-decoration: none;
+
+    font-weight: 700;
+
+    transition: .2s ease;
+}
+
+.carousel-content .primary-button:hover {
+    background: #106530;
+    transform: translateY(-2px);
+}
+
+
+/* IMAGEM */
+
+.carousel-image {
+    width: 100%;
+    height: 100%;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.carousel-image img {
+    width: 100%;
+    height: 100%;
+
+    object-fit: contain;
+
+    border-radius: 18px;
+}
+
+
+/* SETAS */
+
+.carousel-button {
+    position: absolute;
+
+    top: 50%;
+    transform: translateY(-50%);
+
+    z-index: 5;
+
+    width: 42px;
+    height: 42px;
+
+    border: none;
+    border-radius: 50%;
+
+    background: rgba(255, 255, 255, .9);
+
+    color: #222;
+
+    font-size: 20px;
+
+    cursor: pointer;
+
+    box-shadow: 0 4px 15px rgba(0, 0, 0, .12);
+
+    transition: .2s ease;
+}
+
+.carousel-button:hover {
+    background: white;
+    transform: translateY(-50%) scale(1.08);
+}
+
+.carousel-prev {
+    left: 20px;
+}
+
+.carousel-next {
+    right: 20px;
+}
+
+
+/* BOLINHAS */
+
+.carousel-dots {
+    position: absolute;
+
+    bottom: 18px;
+    left: 50%;
+
+    transform: translateX(-50%);
+
+    z-index: 5;
+
+    display: flex;
+    gap: 8px;
+}
+
+.carousel-dot {
+    width: 9px;
+    height: 9px;
+
+    padding: 0;
+
+    border: none;
+    border-radius: 50%;
+
+    background: rgba(0, 0, 0, .25);
+
+    cursor: pointer;
+
+    transition: .25s ease;
+}
+
+.carousel-dot.active {
+    width: 24px;
+
+    border-radius: 10px;
+
+    background: #16803c;
+}
+
+
+
+@media (max-width: 768px) {
+
+    .catalog-carousel {
+        height: auto;
+        min-height: 520px;
+
+        margin: 20px 15px;
+
+        border-radius: 18px;
+    }
+
+    .carousel-slide {
+        grid-template-columns: 1fr;
+
+        padding: 35px 25px 55px;
+
+        text-align: center;
+    }
+
+    .carousel-content {
+        max-width: 100%;
+    }
+
+    .carousel-content h1 {
+        font-size: 32px;
+    }
+
+    .carousel-content p {
+        font-size: 15px;
+    }
+
+    .carousel-image {
+        height: 180px;
+
+        margin-top: 20px;
+    }
+
+    .carousel-button {
+        width: 36px;
+        height: 36px;
+
+        font-size: 16px;
+    }
+
+    .carousel-prev {
+        left: 10px;
+    }
+
+    .carousel-next {
+        right: 10px;
+    }
+}

@@ -14,6 +14,10 @@ class LDMcontroller extends Controller
         return view('welcome',['dados' => $dados]);
     }
 
+    
+
+    
+
 
     public function add()
     {

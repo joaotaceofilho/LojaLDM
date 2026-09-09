@@ -9,10 +9,13 @@ export default defineConfig({
             input: [
                 'resources/css/style.css',
                 'resources/css/app.css',
+                'resources/css/welcome.css',
                 'resources/css/header.css',
                 'resources/css/footer.css',
                 'resources/css/contact.css',
-                'resources/js/app.js'
+                'resources/css/catalog-carousel.css',
+                'resources/js/app.js',
+                'resources/js/catalog-carousel.js',
             ],
             refresh: true,
             fonts: [
