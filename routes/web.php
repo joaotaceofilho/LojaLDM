@@ -9,7 +9,7 @@ Route::get('/pagina/detallsProducts', [LDMcontroller::class, 'detalls']);
 Route::get('/pagina/add', [LDMcontroller::class, 'add']);
 Route::post('/pagina/add', [LDMcontroller::class, 'store']);
 
-Route::get('/produtos', function () {
+Route::get('/pesquisa', function () {
 
     $pesquisa = request('search');
 
@@ -19,8 +19,12 @@ Route::get('/produtos', function () {
         ->orWhere('category', 'like', "%$pesquisa%")
         ->get();
 
-    return view('welcome', compact('dados'));
-})->name('produtos');
+    //return view('welcome', compact('dados'));
+    return view('welcome', [
+                            'pesquisa' => $pesquisa,
+                            'dados' => $dados
+                            ]);
+})->name('pesquisa');
 
 
 

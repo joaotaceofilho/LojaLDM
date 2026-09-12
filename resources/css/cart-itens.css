@@ -1,0 +1,600 @@
+/* =========================================================
+   PÁGINA DE BUSCA
+   ========================================================= */
+
+.search-page {
+    width: 100%;
+    min-height: 100vh;
+    background: #ebebeb;
+    color: #333;
+}
+
+
+/* =========================================================
+   CABEÇALHO
+   ========================================================= */
+
+.search-header {
+    background: #fff;
+    border-bottom: 1px solid #e5e5e5;
+}
+
+.search-header-content {
+    width: min(1400px, 94%);
+    margin: 0 auto;
+    padding: 32px 0;
+}
+
+.search-eyebrow {
+    display: block;
+    margin-bottom: 8px;
+
+    font-size: 13px;
+    font-weight: 700;
+    color: #3483fa;
+
+    text-transform: uppercase;
+    letter-spacing: .08em;
+}
+
+.search-header h1 {
+    margin: 0 0 8px;
+
+    font-size: 30px;
+    line-height: 1.2;
+}
+
+.search-header p {
+    margin: 0;
+
+    color: #666;
+    font-size: 15px;
+}
+
+
+/* =========================================================
+   LAYOUT
+   ========================================================= */
+
+.search-layout {
+    width: min(1400px, 94%);
+    margin: 24px auto;
+
+    display: grid;
+    grid-template-columns: 250px 1fr;
+
+    gap: 24px;
+
+    align-items: start;
+}
+
+
+/* =========================================================
+   SIDEBAR
+   ========================================================= */
+
+.search-sidebar {
+    background: #fff;
+
+    border-radius: 8px;
+    border: 1px solid #e5e5e5;
+
+    overflow: hidden;
+}
+
+.filter-section {
+    padding: 20px;
+
+    border-bottom: 1px solid #e5e5e5;
+}
+
+.filter-section:last-child {
+    border-bottom: none;
+}
+
+.filter-section h3 {
+    margin: 0;
+
+    font-size: 20px;
+}
+
+.filter-section h4 {
+    margin: 0 0 14px;
+
+    font-size: 15px;
+}
+
+.clear-filters {
+    display: inline-block;
+
+    margin-top: 6px;
+
+    color: #3483fa;
+
+    font-size: 13px;
+    text-decoration: none;
+}
+
+.clear-filters:hover {
+    text-decoration: underline;
+}
+
+
+/* =========================================================
+   OPÇÕES DOS FILTROS
+   ========================================================= */
+
+.filter-option {
+    display: flex;
+
+    align-items: center;
+
+    gap: 9px;
+
+    margin-bottom: 12px;
+
+    font-size: 14px;
+
+    cursor: pointer;
+}
+
+.filter-option:last-child {
+    margin-bottom: 0;
+}
+
+.filter-option input {
+    width: 16px;
+    height: 16px;
+
+    cursor: pointer;
+}
+
+
+/* =========================================================
+   PREÇO
+   ========================================================= */
+
+.price-filter {
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 8px;
+}
+
+.price-filter input {
+    width: 100%;
+
+    box-sizing: border-box;
+
+    padding: 10px 12px;
+
+    border: 1px solid #ccc;
+    border-radius: 6px;
+
+    font-size: 14px;
+}
+
+.price-filter span {
+    color: #777;
+
+    font-size: 12px;
+}
+
+
+/* =========================================================
+   RESULTADOS
+   ========================================================= */
+
+.search-results {
+    min-width: 0;
+}
+
+.results-toolbar {
+    display: flex;
+
+    justify-content: space-between;
+    align-items: center;
+
+    margin-bottom: 16px;
+
+    padding: 14px 18px;
+
+    background: #fff;
+
+    border: 1px solid #e5e5e5;
+    border-radius: 8px;
+
+    font-size: 14px;
+}
+
+.sort-box {
+    display: flex;
+
+    align-items: center;
+
+    gap: 8px;
+}
+
+.sort-box label {
+    color: #666;
+}
+
+.sort-box select {
+    padding: 8px 12px;
+
+    border: 1px solid #ccc;
+    border-radius: 6px;
+
+    background: #fff;
+
+    font-size: 14px;
+}
+
+/* =====================================================
+   RESULTADO DA BUSCA - DADOS BRUTOS
+   ===================================================== */
+
+.search-header-content > p {
+    margin-top: 18px;
+    color: #666;
+    font-size: 14px;
+}
+
+/* Caixa onde aparece o conteúdo de $dados */
+.search-header-content > p strong {
+    display: block;
+
+    margin-top: 12px;
+    padding: 16px 18px;
+
+    max-height: 150px;
+    overflow-y: auto;
+
+    background: #f8f9fa;
+    border: 1px solid #e1e4e8;
+    border-radius: 8px;
+
+    color: #333;
+
+    font-family: Consolas, Monaco, monospace;
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 1.6;
+
+    word-break: break-word;
+
+    box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.04);
+}
+
+/* Barra de rolagem */
+.search-header-content > p strong::-webkit-scrollbar {
+    width: 7px;
+}
+
+.search-header-content > p strong::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 10px;
+}
+
+.search-header-content > p strong::-webkit-scrollbar-thumb {
+    background: #c7c7c7;
+    border-radius: 10px;
+}
+
+.search-header-content > p strong::-webkit-scrollbar-thumb:hover {
+    background: #999;
+}
+
+/* =========================================================
+   GRID DE PRODUTOS
+   ========================================================= */
+
+.search-product-grid {
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, minmax(0, 1fr));
+
+    gap: 16px;
+}
+
+
+/* =========================================================
+   CARD
+   ========================================================= */
+
+.search-product-card {
+    background: #fff;
+
+    border: 1px solid #e5e5e5;
+
+    border-radius: 8px;
+
+    overflow: hidden;
+
+    transition:
+        transform .2s ease,
+        box-shadow .2s ease;
+}
+
+.search-product-card:hover {
+    transform: translateY(-3px);
+
+    box-shadow:
+        0 8px 20px rgba(0, 0, 0, .08);
+}
+
+
+/* =========================================================
+   IMAGEM
+   ========================================================= */
+
+.search-product-image {
+    width: 100%;
+    height: 230px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    background: #fff;
+
+    border-bottom: 1px solid #eee;
+
+    overflow: hidden;
+}
+
+.search-product-image img {
+    width: 100%;
+    height: 100%;
+
+    object-fit: contain;
+
+    padding: 15px;
+
+    box-sizing: border-box;
+}
+
+
+/* =========================================================
+   INFORMAÇÕES
+   ========================================================= */
+
+.search-product-info {
+    padding: 18px;
+}
+
+.search-product-category {
+    display: inline-block;
+
+    margin-bottom: 8px;
+
+    font-size: 11px;
+    font-weight: 700;
+
+    color: #3483fa;
+
+    text-transform: uppercase;
+}
+
+.search-product-name {
+    margin: 0 0 10px;
+
+    font-size: 17px;
+
+    line-height: 1.35;
+
+    font-weight: 600;
+}
+
+.search-product-brand {
+    margin: 0 0 10px;
+
+    color: #666;
+
+    font-size: 13px;
+}
+
+.search-product-description {
+    display: -webkit-box;
+
+    margin: 0 0 14px;
+
+    color: #666;
+
+    font-size: 13px;
+
+    line-height: 1.5;
+
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+
+    overflow: hidden;
+}
+
+
+/* =========================================================
+   ESTOQUE
+   ========================================================= */
+
+.search-product-stock {
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 3px;
+
+    margin-bottom: 16px;
+
+    font-size: 13px;
+
+    color: #666;
+}
+
+.stock-available {
+    color: #00a650;
+
+    font-weight: 700;
+}
+
+.stock-unavailable {
+    color: #e53935;
+
+    font-weight: 700;
+}
+
+
+/* =========================================================
+   BOTÃO
+   ========================================================= */
+
+.search-product-button {
+    display: flex;
+
+    justify-content: space-between;
+    align-items: center;
+
+    width: 100%;
+
+    box-sizing: border-box;
+
+    padding: 11px 14px;
+
+    border-radius: 6px;
+
+    background: #3483fa;
+
+    color: #fff;
+
+    font-size: 14px;
+    font-weight: 600;
+
+    text-decoration: none;
+
+    transition: background .2s ease;
+}
+
+.search-product-button:hover {
+    background: #296fd1;
+}
+
+.search-product-button span {
+    font-size: 18px;
+}
+
+
+/* =========================================================
+   NENHUM RESULTADO
+   ========================================================= */
+
+.empty-search {
+    padding: 70px 30px;
+
+    background: #fff;
+
+    border: 1px solid #e5e5e5;
+
+    border-radius: 8px;
+
+    text-align: center;
+}
+
+.empty-search-icon {
+    margin-bottom: 15px;
+
+    font-size: 55px;
+}
+
+.empty-search h2 {
+    margin: 0 0 10px;
+
+    font-size: 24px;
+}
+
+.empty-search p {
+    margin: 5px 0;
+
+    color: #666;
+
+    font-size: 14px;
+}
+
+.empty-search a {
+    display: inline-block;
+
+    margin-top: 20px;
+
+    padding: 11px 18px;
+
+    background: #3483fa;
+
+    color: #fff;
+
+    border-radius: 6px;
+
+    text-decoration: none;
+
+    font-size: 14px;
+}
+
+.empty-search a:hover {
+    background: #296fd1;
+}
+
+
+/* =========================================================
+   RESPONSIVIDADE
+   ========================================================= */
+
+@media (max-width: 1100px) {
+
+    .search-product-grid {
+        grid-template-columns:
+            repeat(2, minmax(0, 1fr));
+    }
+
+}
+
+
+@media (max-width: 800px) {
+
+    .search-layout {
+        grid-template-columns: 1fr;
+    }
+
+    .search-sidebar {
+        display: none;
+    }
+
+}
+
+
+@media (max-width: 600px) {
+
+    .search-header-content {
+        padding: 24px 0;
+    }
+
+    .search-header h1 {
+        font-size: 24px;
+    }
+
+    .results-toolbar {
+        flex-direction: column;
+
+        align-items: flex-start;
+
+        gap: 12px;
+    }
+
+    .search-product-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .search-product-image {
+        height: 260px;
+    }
+
+}

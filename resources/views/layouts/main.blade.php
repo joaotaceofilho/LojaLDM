@@ -3,11 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="{{ asset('img/ldm.png') }}?v=2">
     <title>@yield('title')</title>
     
 
     
-    @vite(['resources/css/style.css','resources/css/welcome.css','resources/css/app.css', 'resources/css/header.css', 'resources/css/footer.css', 'resources/css/contact.css', 'resources/js/app.js','resources/css/add.css', 'resources/css/catalog-carousel.css', 'resources/js/catalog-carousel.js'])
+    @vite(['resources/css/style.css','resources/css/welcome.css','resources/css/cart-itens.css','resources/css/app.css', 'resources/css/header.css', 'resources/css/footer.css', 'resources/css/contact.css', 'resources/js/app.js','resources/css/add.css', 'resources/css/catalog-carousel.css', 'resources/js/catalog-carousel.js'])
 
 </head>
 <body>

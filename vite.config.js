@@ -10,6 +10,7 @@ export default defineConfig({
                 'resources/css/style.css',
                 'resources/css/app.css',
                 'resources/css/welcome.css',
+                'resources/css/cart-itens.css',
                 'resources/css/header.css',
                 'resources/css/footer.css',
                 'resources/css/contact.css',
