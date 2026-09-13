@@ -25,6 +25,10 @@
 
                 <article class="produto-card">
 
+                    @php
+                        $imagemPrincipal = $dado->images->firstWhere('is_main', true) ?? $dado->images->first();
+                    @endphp
+
 
                     {{-- =========================
                          CAIXA DA IMAGEM
@@ -35,7 +39,7 @@
                         <div class="produto-image">
 
                             <img
-                                src="{{ asset('img/toddy.jpg') }}"
+                                src="{{ $imagemPrincipal ? asset('storage/'.$imagemPrincipal->image) : asset('img/toddy.jpg') }}"
                                 alt="{{ $dado->name }}"
                             >
 
@@ -52,7 +56,7 @@
 
                         {{-- Categoria --}}
                         <span class="produto-category">
-                            {{ $dado->category }}
+                            {{ $dado->category?->name }}
                         </span>
 
 
@@ -91,7 +95,7 @@
                                 </span>
 
                                 <strong>
-                                    {{ $dado->marca }}
+                                    {{ $dado->brand?->name }}
                                 </strong>
 
                             </div>

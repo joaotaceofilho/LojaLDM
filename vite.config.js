@@ -14,9 +14,13 @@ export default defineConfig({
                 'resources/css/header.css',
                 'resources/css/footer.css',
                 'resources/css/contact.css',
+                'resources/css/add.css',
                 'resources/css/catalog-carousel.css',
                 'resources/js/app.js',
                 'resources/js/catalog-carousel.js',
+                'resources/js/cart-itens.js',
+                'resources/css/detalssProducts.css',
+                'resources/js/detallsProducts.js'
             ],
             refresh: true,
             fonts: [

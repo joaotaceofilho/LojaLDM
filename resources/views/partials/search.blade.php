@@ -4,7 +4,7 @@
         <input
             type="text"
             name="search"
-            value = "{{ request('pesquisa') }}"
+            value = "{{ request('search') }}"
             placeholder="Buscar produtos, marcas e mais..."
         >
 

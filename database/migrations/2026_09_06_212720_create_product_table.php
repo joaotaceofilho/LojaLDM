@@ -11,7 +11,62 @@ return new class extends Migration
      */
     public function up(): void
     {
+
         Schema::create('product', function (Blueprint $table) {
+
+            $table->id();
+
+            /*
+             * RELACIONAMENTOS
+             */
+
+            $table->foreignId('category_id')
+                ->constrained('categories')
+                ->restrictOnDelete();
+
+            $table->foreignId('brand_id')
+                ->nullable()
+                ->constrained('brands')
+                ->nullOnDelete();
+
+
+            /*
+             * INFORMAÇÕES DO PRODUTO
+             */
+
+            $table->string('name', 150);
+
+            $table->string('slug', 180)->unique();
+
+            $table->text('description')->nullable();
+
+
+            /*
+             * VENDA
+             */
+
+            $table->decimal('price', 10, 2);
+
+            $table->integer('qty')->default(0);
+
+            $table->string('sku', 100)
+                ->nullable()
+                ->unique();
+
+            /*
+             * CONTROLE
+             */
+
+            $table->boolean('private')->default(false);
+
+            $table->boolean('active')->default(true);
+
+            $table->timestamps();
+
+        });
+
+    /**---------------------------------------------------------------------- */
+       /* Schema::create('product', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
             $table->string('name', 100);
@@ -20,7 +75,7 @@ return new class extends Migration
             $table->text('description');
             $table->string('category', 100);
             $table->boolean("private");
-        });
+        });*/
     }
 
     /**

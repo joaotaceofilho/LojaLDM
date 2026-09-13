@@ -58,8 +58,7 @@
 
 .search-layout {
     width: min(1400px, 94%);
-    margin: 24px auto;
-
+    margin: 40px auto;
     display: grid;
     grid-template-columns: 250px 1fr;
 
@@ -185,9 +184,12 @@
 /* =========================================================
    RESULTADOS
    ========================================================= */
-
+#produtos {
+    scroll-margin-top: 125px;
+}
 .search-results {
     min-width: 0;
+    scroll-margin-top: 125px;
 }
 
 .results-toolbar {

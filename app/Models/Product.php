@@ -13,10 +13,40 @@ class Product extends Model
 
     protected $fillable = [
         'name',
-        'marca',
+        'slug',
+        'category_id',
+        'brand_id',
         'qty',
         'description',
-        'category',
+        'price',
+        'sku',
         'private',
+        'active',
     ];
+
+    protected $casts = [
+        'price' => 'decimal:2',
+        'private' => 'boolean',
+        'active' => 'boolean',
+    ];
+
+    public function category()
+    {
+        return $this->belongsTo(Category::class);
+    }
+
+    public function brand()
+    {
+        return $this->belongsTo(Brand::class);
+    }
+
+    public function images()
+    {
+        return $this->hasMany(ProductImage::class);
+    }
+
+    public function variants()
+    {
+        return $this->hasMany(ProductVariant::class);
+    }
 }

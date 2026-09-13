@@ -6,6 +6,7 @@ use App\Models\Product;
 
 Route::get('/', [LDMcontroller::class, 'index']);
 Route::get('/pagina/detallsProducts', [LDMcontroller::class, 'detalls']);
+Route::get('/product/{product}', [LDMcontroller::class, 'detalls'])->name('product.show');
 Route::get('/pagina/add', [LDMcontroller::class, 'add']);
 Route::post('/pagina/add', [LDMcontroller::class, 'store']);
 
@@ -13,17 +14,30 @@ Route::get('/pesquisa', function () {
 
     $pesquisa = request('search');
 
-    $dados = Product::where('name', 'like', "%$pesquisa%")
-        ->orWhere('marca', 'like', "%$pesquisa%")
-        ->orWhere('description', 'like', "%$pesquisa%")
-        ->orWhere('category', 'like', "%$pesquisa%")
+    $dados = Product::with(['category', 'brand', 'images'])
+        ->where(function ($query) use ($pesquisa) {
+
+            $query->where('name', 'like', "%{$pesquisa}%")
+                ->orWhere('description', 'like', "%{$pesquisa}%")
+                ->orWhere('sku', 'like', "%{$pesquisa}%")
+
+                ->orWhereHas('brand', function ($query) use ($pesquisa) {
+                    $query->where('name', 'like', "%{$pesquisa}%");
+                })
+
+                ->orWhereHas('category', function ($query) use ($pesquisa) {
+                    $query->where('name', 'like', "%{$pesquisa}%");
+                });
+
+        })
+        ->where('active', true)
         ->get();
 
-    //return view('welcome', compact('dados'));
     return view('welcome', [
-                            'pesquisa' => $pesquisa,
-                            'dados' => $dados
-                            ]);
+        'pesquisa' => $pesquisa,
+        'dados' => $dados
+    ]);
+
 })->name('pesquisa');
 
 
@@ -33,13 +47,6 @@ Route::get('/pesquisa', function () {
 Route::get('/contato', function () {
    return view('contact');
 });
-
-#Route::get('/product/{id?}', function ($id = null) {
-   # return view('product', ['id' => $id]);
-#});
-
-#route::get('/product/{id}', [LDMcontroller::class, 'show'])->name('product.show');
-
 
 Route::get('/search', function () {
     $busca = request('search');
