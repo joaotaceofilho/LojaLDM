@@ -13,8 +13,19 @@ class Category extends Model
         'name',
         'slug',
         'description',
+        'parent_id',
         'active',
     ];
+
+    public function parent()
+    {
+        return $this->belongsTo(self::class, 'parent_id');
+    }
+
+    public function children()
+    {
+        return $this->hasMany(self::class, 'parent_id');
+    }
 
     public function products()
     {

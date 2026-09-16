@@ -67,6 +67,10 @@
     align-items: start;
 }
 
+.search-layout.without-filters {
+    display: block;
+}
+
 
 /* =========================================================
    SIDEBAR
@@ -126,11 +130,7 @@
 .filter-option {
     display: flex;
 
-    align-items: center;
-
-    gap: 9px;
-
-    margin-bottom: 12px;
+    margin-bottom: 9px;
 
     font-size: 14px;
 
@@ -142,10 +142,27 @@
 }
 
 .filter-option input {
-    width: 16px;
-    height: 16px;
+    position: absolute;
+    opacity: 0;
+    pointer-events: none;
+}
 
-    cursor: pointer;
+.filter-option span {
+    color: #555;
+    line-height: 1.35;
+    transition: color 0.15s ease, font-weight 0.15s ease;
+}
+
+.filter-option:hover span,
+.filter-option input:checked + span {
+    color: #3483fa;
+    font-weight: 600;
+}
+
+.filter-list {
+    max-height: 168px;
+    overflow-y: auto;
+    scrollbar-width: thin;
 }
 
 
@@ -564,10 +581,6 @@
 
     .search-layout {
         grid-template-columns: 1fr;
-    }
-
-    .search-sidebar {
-        display: none;
     }
 
 }

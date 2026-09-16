@@ -26,9 +26,43 @@ class LDMcontroller extends Controller
     public function add()
     {
         $marcas = Brand::all();
-        $categorias = Category::all();
+        $categorias = Category::with('children')
+            ->whereNull('parent_id')
+            ->orderBy('name')
+            ->get();
 
         return view('pagina.add', compact('marcas', 'categorias'));
+    }
+
+    public function categories()
+    {
+        $categorias = Category::with('children')
+            ->whereNull('parent_id')
+            ->orderBy('name')
+            ->get();
+
+        return view('pagina.categories', compact('categorias'));
+    }
+
+    public function storeCategory(Request $request)
+    {
+        $dados = $request->validate([
+            'name' => ['required', 'string', 'max:100'],
+            'description' => ['nullable', 'string'],
+            'parent_id' => ['nullable', 'integer', 'exists:categories,id'],
+        ]);
+
+        $dados['slug'] = Str::slug($dados['name']).'-'.Str::lower(Str::random(6));
+        $dados['active'] = true;
+
+        Category::create($dados);
+
+        return redirect('/pagina/categorias')->with(
+            'success',
+            $request->filled('parent_id')
+                ? 'Subcategoria criada com sucesso.'
+                : 'Categoria criada com sucesso.'
+        );
     }
 
     public function store(Request $request)
@@ -39,11 +73,28 @@ class LDMcontroller extends Controller
             'qty' => ['required', 'integer', 'min:0'],
             'description' => ['required', 'string'],
             'category_id' => ['required', 'integer', 'exists:categories,id'],
+            'subcategory_id' => ['nullable', 'integer', 'exists:categories,id'],
             'price' => ['required', 'numeric', 'min:0'],
             'private' => ['required', 'boolean'],
             'images' => ['nullable', 'array', 'max:10'],
             'images.*' => ['file', 'image', 'mimes:jpeg,jpg,png,webp', 'max:5120'],
         ]);
+
+        if (!empty($dados['subcategory_id'])) {
+            $subcategoriaValida = Category::whereKey($dados['subcategory_id'])
+                ->where('parent_id', $dados['category_id'])
+                ->exists();
+
+            if (!$subcategoriaValida) {
+                return back()
+                    ->withErrors(['subcategory_id' => 'A subcategoria não pertence à categoria selecionada.'])
+                    ->withInput();
+            }
+
+            $dados['category_id'] = $dados['subcategory_id'];
+        }
+
+        unset($dados['subcategory_id']);
 
         $dados['slug'] = Str::slug($dados['name']).'-'.Str::lower(Str::random(6));
 

@@ -9,14 +9,18 @@ Route::get('/pagina/detallsProducts', [LDMcontroller::class, 'detalls']);
 Route::get('/product/{product}', [LDMcontroller::class, 'detalls'])->name('product.show');
 Route::get('/pagina/add', [LDMcontroller::class, 'add']);
 Route::post('/pagina/add', [LDMcontroller::class, 'store']);
+Route::get('/pagina/categorias', [LDMcontroller::class, 'categories']);
+Route::post('/pagina/categorias', [LDMcontroller::class, 'storeCategory']);
 
 Route::get('/pesquisa', function () {
 
-    $pesquisa = request('search');
+    $pesquisa = trim((string) request('search', ''));
 
-    $dados = Product::with(['category', 'brand', 'images'])
-        ->where(function ($query) use ($pesquisa) {
+    $consultaBase = Product::with(['category', 'brand', 'images'])
+        ->where('active', true);
 
+    if ($pesquisa !== '') {
+        $consultaBase->where(function ($query) use ($pesquisa) {
             $query->where('name', 'like', "%{$pesquisa}%")
                 ->orWhere('description', 'like', "%{$pesquisa}%")
                 ->orWhere('sku', 'like', "%{$pesquisa}%")
@@ -29,13 +33,49 @@ Route::get('/pesquisa', function () {
                     $query->where('name', 'like', "%{$pesquisa}%");
                 });
 
-        })
-        ->where('active', true)
-        ->get();
+        });
+    }
+
+    $produtosEncontrados = (clone $consultaBase)->get();
+    $categorias = $produtosEncontrados->pluck('category')
+        ->filter()
+        ->unique('id')
+        ->sortBy('name');
+    $marcas = $produtosEncontrados->pluck('brand')
+        ->filter()
+        ->unique('id')
+        ->sortBy('name');
+
+    $categoriasSelecionadas = array_filter((array) request('categories'));
+    $marcasSelecionadas = array_filter((array) request('brands'));
+
+    if ($categoriasSelecionadas) {
+        $consultaBase->whereIn('category_id', $categoriasSelecionadas);
+    }
+
+    if ($marcasSelecionadas) {
+        $consultaBase->whereIn('brand_id', $marcasSelecionadas);
+    }
+
+    if (request()->filled('min_price')) {
+        $consultaBase->where('price', '>=', request('min_price'));
+    }
+
+    if (request()->filled('max_price')) {
+        $consultaBase->where('price', '<=', request('max_price'));
+    }
+
+    if (request()->boolean('in_stock')) {
+        $consultaBase->where('qty', '>', 0);
+    }
+
+    $dados = $consultaBase->get();
 
     return view('welcome', [
         'pesquisa' => $pesquisa,
-        'dados' => $dados
+        'dados' => $dados,
+        'categorias' => $categorias,
+        'marcas' => $marcas,
     ]);
 
 })->name('pesquisa');

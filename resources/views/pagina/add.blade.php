@@ -101,7 +101,7 @@
             >{{ old('description') }}</textarea>
         </div>
 
-        {{-- Categoria --}}
+        {{-- Categoria principal --}}
         <div class="form-group">
             <label for="category_id">Categoria</label>
 
@@ -115,7 +115,7 @@
 
                     <option
                         value="{{ $categoria->id }}"
-                        {{ old('category_id') == $categoria->id ? 'selected' : '' }}
+                        {{ old('category_id', old('parent_category_id')) == $categoria->id ? 'selected' : '' }}
                     >
                         {{ $categoria->name }}
                     </option>
@@ -123,6 +123,33 @@
                 @endforeach
 
             </select>
+        </div>
+
+        {{-- Subcategoria --}}
+        <div class="form-group">
+            <label for="subcategory_id">Subcategoria</label>
+
+            <select id="subcategory_id" name="subcategory_id" disabled>
+
+                <option value="">
+                    Selecione uma subcategoria (opcional)
+                </option>
+
+                @foreach($categorias as $categoria)
+                    @foreach($categoria->children->sortBy('name') as $subcategoria)
+                        <option
+                            value="{{ $subcategoria->id }}"
+                            data-parent="{{ $categoria->id }}"
+                            {{ old('subcategory_id') == $subcategoria->id ? 'selected' : '' }}
+                        >
+                            {{ $subcategoria->name }}
+                        </option>
+                    @endforeach
+                @endforeach
+
+            </select>
+
+            <small class="subcategory-hint">Escolha uma categoria para ver as opções disponíveis.</small>
         </div>
 
         {{-- Imagens --}}
@@ -174,5 +201,42 @@
 </section>
 
 </main>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const categorySelect = document.getElementById('category_id');
+        const subcategorySelect = document.getElementById('subcategory_id');
+        const hint = document.querySelector('.subcategory-hint');
+
+        function updateSubcategories() {
+            const categoryId = categorySelect.value;
+            let hasOptions = false;
+
+            Array.from(subcategorySelect.options).forEach(function (option, index) {
+                if (index === 0) {
+                    option.hidden = false;
+                    return;
+                }
+
+                const belongsToCategory = option.dataset.parent === categoryId;
+                option.hidden = !belongsToCategory;
+                hasOptions = hasOptions || belongsToCategory;
+            });
+
+            subcategorySelect.disabled = !categoryId || !hasOptions;
+
+            if (!hasOptions) {
+                subcategorySelect.value = '';
+            }
+
+            hint.textContent = hasOptions
+                ? 'Selecione uma subcategoria, se aplicável.'
+                : 'Esta categoria não possui subcategorias.';
+        }
+
+        categorySelect.addEventListener('change', updateSubcategories);
+        updateSubcategories();
+    });
+</script>
 
 @endsection
