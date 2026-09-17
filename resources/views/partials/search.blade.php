@@ -9,7 +9,7 @@
         >
 
         <button type="submit">
-            <i class="fa-solid fa-magnifying-glass">🔍</i>
+            <i class="fa-solid fa-magnifying-glass"><img src="/img/lupa.png" alt="lupa"></i>
         </button>
 
     </div>

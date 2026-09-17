@@ -178,6 +178,17 @@
         0 0 0 4px rgba(37, 99, 235, 0.10);
 }
 
+.category-management-link {
+    margin-top: 2px;
+    color: #2563eb;
+    font-size: 13px;
+    text-decoration: underline;
+}
+
+.category-management-link:hover {
+    color: #1d4ed8;
+}
+
 
 /* =========================================
    PLACEHOLDER

@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LDMcontroller;
+use App\Models\Category;
 use App\Models\Product;
 
 Route::get('/', [LDMcontroller::class, 'index']);
@@ -30,7 +31,10 @@ Route::get('/pesquisa', function () {
                 })
 
                 ->orWhereHas('category', function ($query) use ($pesquisa) {
-                    $query->where('name', 'like', "%{$pesquisa}%");
+                    $query->where('name', 'like', "%{$pesquisa}%")
+                        ->orWhereHas('parent', function ($query) use ($pesquisa) {
+                            $query->where('name', 'like', "%{$pesquisa}%");
+                        });
                 });
 
         });
@@ -50,7 +54,14 @@ Route::get('/pesquisa', function () {
     $marcasSelecionadas = array_filter((array) request('brands'));
 
     if ($categoriasSelecionadas) {
-        $consultaBase->whereIn('category_id', $categoriasSelecionadas);
+        $subcategoriasSelecionadas = Category::whereIn('parent_id', $categoriasSelecionadas)
+            ->pluck('id')
+            ->all();
+
+        $consultaBase->whereIn('category_id', array_unique([
+            ...$categoriasSelecionadas,
+            ...$subcategoriasSelecionadas,
+        ]));
     }
 
     if ($marcasSelecionadas) {

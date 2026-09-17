@@ -12,7 +12,7 @@
                 </span>
 
                 <h1>
-                    Encontre tudo o que você precisa
+                    Encontre o que você precisa
                 </h1>
 
                 <p>

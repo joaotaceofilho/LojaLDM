@@ -9,5 +9,11 @@
 
     </div>
 
+    <div class="mobile-location">
+        <i class="fa-solid fa-location-dot" aria-hidden="true"></i>
+        <span>Enviar para <strong>Corumbá 79333090</strong></span>
+        <i class="fa-solid fa-chevron-right" aria-hidden="true"></i>
+    </div>
+
     @include('partials.navbar')
 </header>

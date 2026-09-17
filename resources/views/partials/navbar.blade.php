@@ -4,10 +4,17 @@
 
         <ul class="nav-links">
 
-            <li>
-                <a href="/" class="highlight">
-                    Home
+            <li class="nav-category">
+                <a href="{{ route('pesquisa') }}" class="highlight nav-category-toggle" aria-haspopup="true">
+                    Categorias
+                    <span class="nav-category-arrow" aria-hidden="true"></span>
                 </a>
+
+                <ul class="category-menu">
+                    <li><a href="{{ route('pesquisa', ['search' => 'Roupas']) }}">Roupas</a></li>
+                    <li><a href="{{ route('pesquisa', ['search' => 'Acessórios de celular']) }}">Acessórios de celular</a></li>
+                    <li><a href="{{ route('pesquisa', ['search' => 'Papelaria']) }}">Papelaria</a></li>
+                </ul>
             </li>
 
             <li>
@@ -25,6 +32,25 @@
             --}}
 
         </ul>
+
+        <div class="action-links nav-actions">
+            <a href="#" class="action-item">
+                <span>Crie a sua conta</span>
+            </a>
+
+            <a href="#" class="action-item">
+                <span>Entre</span>
+            </a>
+
+            <a href="#" class="action-item">
+                <span>Compras</span>
+            </a>
+
+            <a href="" class="action-item action-cart">
+                <img src="{{ asset('img/carrinho.png') }}" alt="Carrinho">
+                <span class="badge">3</span>
+            </a>
+        </div>
 
     </div>
 

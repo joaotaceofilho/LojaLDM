@@ -150,6 +150,9 @@
             </select>
 
             <small class="subcategory-hint">Escolha uma categoria para ver as opções disponíveis.</small>
+            <a class="category-management-link" href="{{ url('/pagina/categorias') }}">
+                Não encontrou a subcategoria? Cadastre uma nova.
+            </a>
         </div>
 
         {{-- Imagens --}}

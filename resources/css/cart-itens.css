@@ -324,6 +324,9 @@
    ========================================================= */
 
 .search-product-card {
+    display: flex;
+    flex-direction: column;
+
     background: #fff;
 
     border: 1px solid #e5e5e5;
@@ -382,6 +385,10 @@
    ========================================================= */
 
 .search-product-info {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+
     padding: 18px;
 }
 
@@ -470,6 +477,9 @@
    ========================================================= */
 
 .search-product-button {
+    min-height: 44px;
+    margin-top: auto;
+
     display: flex;
 
     justify-content: space-between;

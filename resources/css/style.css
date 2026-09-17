@@ -6,6 +6,8 @@
     --line: #e5e5e5;
     --surface: #ffffff;
     --canvas: #ededed;
+    --canvass:#15FF00;
+    --black:#000000;
 }
 
 * { box-sizing: border-box; }
